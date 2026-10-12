@@ -1,25 +1,14 @@
 import java.util.Scanner;
 
-/**
- * PayrollCalculator
- *
- * A simple payroll calculator that reads an employee's name, hourly wage
- * and hours worked, computes gross salary, a flat 20% tax and net salary,
- * and prints a formatted payroll summary.
- *
- * Author: Francesco Bortoluzzi
- * Course: APANPS5175 Introduction to Programming using Java
- */
+// Author: Francesco Bortoluzzi
+// Course: APANPS5175 Introduction to Programming using Java
 public class PayrollCalculator {
 
-    // Flat tax rate as a named constant, so the value is defined in one place
     private static final double TAX_RATE = 0.20;
 
     public static void main(String[] args) {
-        // Scanner reads what the user types in the console
         Scanner scanner = new Scanner(System.in);
 
-        // ---- 1. Variable declarations ----
         String name;
         double hourlyWage;
         int hoursWorked;
@@ -27,17 +16,14 @@ public class PayrollCalculator {
         double tax;
         double netSalary;
 
-        // ---- 2. User input (each value is validated) ----
         name = readName(scanner);
         hourlyWage = readPositiveDouble(scanner, "Enter your hourly wage: $");
         hoursWorked = readNonNegativeInt(scanner, "Enter the number of hours worked: ");
 
-        // ---- 3. Calculations ----
-        grossSalary = hourlyWage * hoursWorked;   // earnings before deductions
-        tax = grossSalary * TAX_RATE;             // 20% flat tax
-        netSalary = grossSalary - tax;            // earnings after tax
+        grossSalary = hourlyWage * hoursWorked;
+        tax = grossSalary * TAX_RATE;
+        netSalary = grossSalary - tax;
 
-        // ---- 4. Output in the required format ----
         System.out.println();
         System.out.println("Payroll Summary for " + name);
         System.out.println("-----------------------------------");
@@ -47,13 +33,9 @@ public class PayrollCalculator {
         System.out.printf("Taxes Deducted: $%.2f%n", tax);
         System.out.printf("Net Salary: $%.2f%n", netSalary);
 
-        // Release the Scanner resource
         scanner.close();
     }
 
-    /**
-     * Reads a non-empty name. Keeps asking until the user types something.
-     */
     private static String readName(Scanner scanner) {
         while (true) {
             System.out.print("Enter your name: ");
@@ -65,10 +47,6 @@ public class PayrollCalculator {
         }
     }
 
-    /**
-     * Reads a decimal number greater than zero.
-     * Rejects text (e.g. "abc") and zero or negative values.
-     */
     private static double readPositiveDouble(Scanner scanner, String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -85,10 +63,6 @@ public class PayrollCalculator {
         }
     }
 
-    /**
-     * Reads a whole number that is zero or greater.
-     * Rejects text, decimals (e.g. "40.5") and negative values.
-     */
     private static int readNonNegativeInt(Scanner scanner, String prompt) {
         while (true) {
             System.out.print(prompt);
